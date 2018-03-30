@@ -10,7 +10,12 @@ public class Driver {
 	 * @param args command line arguments, not used.
 	 */
 	public static void main(String[] args) {
-		System.out.println("HelloWorld?");
+		
+		Model m = new Model();
+		
+		MainFrame frame = new MainFrame(m);
+		frame.setVisible(true);
+		
 	}
 	
 }
