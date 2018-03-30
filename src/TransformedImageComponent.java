@@ -20,7 +20,7 @@ public class TransformedImageComponent extends JLabel {
 		
 		m.attachListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				System.out.println("CHANGED");
+				System.out.println("Updating Transformed Image");
 				int[][] pixelMatrix = m.getTransformation();
 				int height = pixelMatrix.length;
 				int width = pixelMatrix[0].length;

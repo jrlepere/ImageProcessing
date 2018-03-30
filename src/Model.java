@@ -75,13 +75,28 @@ public class Model {
 	 * @return the transformed image.
 	 */
 	public int[][] getTransformation() {
-		return algo.transform(pixelMatrix);
+		
+		int[][] temp = new int[pixelMatrix.length][pixelMatrix[0].length];
+		
+		// Contization
+		for (int y = 0; y < temp.length; y ++) {
+			for (int x = 0; x < temp[0].length; x ++) {
+				int oRGB = pixelMatrix[y][x];
+				int oGrayScale = oRGB & 0xff;
+				int blockSize = (int) Math.pow(2, 8 - bitPrecision);
+				int nGrayScale = (oGrayScale / blockSize) * (255 / ((int) Math.pow(2, bitPrecision) - 1));
+				temp[y][x] = 0xff000000 + (nGrayScale << 16) + (nGrayScale << 8) + nGrayScale;
+			}
+		}
+		
+		return algo.transform(temp);
 	}
 	
 	/**
 	 * Alert the listeners of a change.
 	 */
 	public void alert() {
+		System.out.println("ALERT");
 		ChangeEvent e = new ChangeEvent(this);
 		for (ChangeListener l : listeners) {
 			l.stateChanged(e);

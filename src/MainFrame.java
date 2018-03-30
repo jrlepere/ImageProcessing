@@ -14,8 +14,11 @@ public class MainFrame extends JFrame{
 	 * @param m the Model for MVC.
 	 */
 	public MainFrame(Model m) {
+		
 		this.setLayout(new BorderLayout());
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		
 		ImagesPanel iP = new ImagesPanel(m);
 		TransformationSelectionPanel tSP = new TransformationSelectionPanel(m);
@@ -23,6 +26,7 @@ public class MainFrame extends JFrame{
 		this.add(tSP, BorderLayout.SOUTH);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 	}
 	
 	private static final int FRAME_WIDTH = 1050;

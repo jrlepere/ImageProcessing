@@ -1,3 +1,5 @@
+import java.awt.GridLayout;
+
 import javax.swing.JPanel;
 
 /**
@@ -12,6 +14,12 @@ public class TransformationSelectionPanel extends JPanel {
 	 * @param m the Model for MVC.
 	 */
 	public TransformationSelectionPanel(Model m) {
+		
+		this.setLayout(new GridLayout(1, 1));
+		
+		BitPrecisionSlider bPS = new BitPrecisionSlider(m);
+		
+		this.add(bPS);
 		
 	}
 	
