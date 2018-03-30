@@ -76,15 +76,18 @@ public class Model {
 	 */
 	public int[][] getTransformation() {
 		
-		int[][] temp = new int[pixelMatrix.length][pixelMatrix[0].length];
+		//int[][] temp = new int[pixelMatrix.length][pixelMatrix[0].length];
+		int[][] temp = new int[spatialResolution][spatialResolution];
 		
 		// Contization
+		int bitPrecisionBlockSize = (int) Math.pow(2, 8 - bitPrecision);
+		int bitPrecisionValueMappingRatio = (255 / ((int) Math.pow(2, bitPrecision) - 1));
+		double spatialResolutionRatio = 512.0 / spatialResolution;
 		for (int y = 0; y < temp.length; y ++) {
 			for (int x = 0; x < temp[0].length; x ++) {
-				int oRGB = pixelMatrix[y][x];
+				int oRGB = pixelMatrix[(int) (y * spatialResolutionRatio)][(int) (x * spatialResolutionRatio)];
 				int oGrayScale = oRGB & 0xff;
-				int blockSize = (int) Math.pow(2, 8 - bitPrecision);
-				int nGrayScale = (oGrayScale / blockSize) * (255 / ((int) Math.pow(2, bitPrecision) - 1));
+				int nGrayScale = (oGrayScale / bitPrecisionBlockSize) * bitPrecisionValueMappingRatio;
 				temp[y][x] = 0xff000000 + (nGrayScale << 16) + (nGrayScale << 8) + nGrayScale;
 			}
 		}

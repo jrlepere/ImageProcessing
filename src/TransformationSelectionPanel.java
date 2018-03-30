@@ -15,11 +15,10 @@ public class TransformationSelectionPanel extends JPanel {
 	 */
 	public TransformationSelectionPanel(Model m) {
 		
-		this.setLayout(new GridLayout(1, 1));
+		this.setLayout(new GridLayout(2, 1));
 		
-		BitPrecisionSlider bPS = new BitPrecisionSlider(m);
-		
-		this.add(bPS);
+		this.add(new ZoomInSlider(m));
+		this.add(new BitPrecisionSlider(m));
 		
 	}
 	

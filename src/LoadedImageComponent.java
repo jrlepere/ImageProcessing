@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,9 @@ public class LoadedImageComponent extends JLabel {
 	 * @param m the Model for MVC
 	 */
 	public LoadedImageComponent(Model m) {
+		
+		this.setHorizontalAlignment(JLabel.CENTER);
+		this.setVerticalAlignment(JLabel.CENTER);
 		
 		this.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {}

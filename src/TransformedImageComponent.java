@@ -18,6 +18,9 @@ public class TransformedImageComponent extends JLabel {
 	 */
 	public TransformedImageComponent(Model m) {
 		
+		this.setHorizontalAlignment(JLabel.CENTER);
+		this.setVerticalAlignment(JLabel.CENTER);
+		
 		m.attachListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				System.out.println("Updating Transformed Image");

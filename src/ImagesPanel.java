@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
@@ -14,13 +14,13 @@ public class ImagesPanel extends JPanel {
 	 * @param m the Model for MVC
 	 */
 	public ImagesPanel(Model m) {
-		this.setLayout(new BorderLayout());
+		this.setLayout(new GridLayout(1, 2));
 		
 		TransformedImageComponent tIC = new TransformedImageComponent(m);
 		LoadedImageComponent lIC = new LoadedImageComponent(m);
 		
-		this.add(lIC, BorderLayout.WEST);
-		this.add(tIC, BorderLayout.EAST);
+		this.add(lIC);
+		this.add(tIC);
 	}
 	
 	private static final long serialVersionUID = 1353901L;

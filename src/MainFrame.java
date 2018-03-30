@@ -30,7 +30,7 @@ public class MainFrame extends JFrame{
 	}
 	
 	private static final int FRAME_WIDTH = 1050;
-	private static final int FRAME_HEIGHT = 600;
+	private static final int FRAME_HEIGHT = 700;
 	private static final long serialVersionUID = 1321394L;
 
 }
