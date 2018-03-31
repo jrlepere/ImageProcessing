@@ -2,6 +2,8 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import model.Model;
+
 /**
  * Panel for the loaded and transformed images.
  * @author JLepere2

@@ -11,6 +11,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import model.Model;
+
 /**
  * The Loaded Image Component of the application.
  * @author JLepere2

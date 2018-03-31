@@ -1,8 +1,11 @@
+package model;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import transformations.TransformationAlgorithm;
 
 /**
  * The Model component for MVC design pattern.
@@ -21,7 +24,8 @@ public class Model {
 	public Model() {
 		listeners = new LinkedList<>();
 		pixelMatrix = new int[512][512];
-		algo = new DefaultAlgorithm();
+		//algo = new NearestNeighborTransformation();
+		//setAlgorithm(new NearestNeighborTransformation());
 		spatialResolution = 512;   // TODO: un hard code??
 		bitPrecision = 8;   // TODO: un hard code??
 	}
@@ -48,7 +52,9 @@ public class Model {
 	 * @param newAlgo the new transformation algorithm.
 	 */
 	public void setAlgorithm(TransformationAlgorithm newAlgo) {
+		if (algo != null) algo.showSelectionFrame(false);
 		algo = newAlgo;
+		algo.showSelectionFrame(true);
 		alert();
 	}
 	
@@ -70,6 +76,10 @@ public class Model {
 		alert();
 	}
 	
+	public void algorithmParametersChanged() {
+		alert();
+	}
+	
 	/**
 	 * Gets the transformed image.
 	 * @return the transformed image.
@@ -79,7 +89,7 @@ public class Model {
 		//int[][] temp = new int[pixelMatrix.length][pixelMatrix[0].length];
 		int[][] temp = new int[spatialResolution][spatialResolution];
 		
-		// Contization
+		// Spatial Resolution and Contization
 		int bitPrecisionBlockSize = (int) Math.pow(2, 8 - bitPrecision);
 		int bitPrecisionValueMappingRatio = (255 / ((int) Math.pow(2, bitPrecision) - 1));
 		double spatialResolutionRatio = 512.0 / spatialResolution;
@@ -93,6 +103,14 @@ public class Model {
 		}
 		
 		return algo.transform(temp);
+	}
+	
+	/**
+	 * Gets the current spatial resolution.
+	 * @return the spatial resolution.
+	 */
+	public int getSpatialResolution() {
+		return spatialResolution;
 	}
 	
 	/**

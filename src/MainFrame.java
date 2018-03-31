@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import model.Model;
+
 /**
  * MainFrame for the GUI.
  * @author JLepere2
@@ -15,20 +17,21 @@ public class MainFrame extends JFrame{
 	 */
 	public MainFrame(Model m) {
 		
+		this.setTitle(FRAME_TITLE);
 		this.setLayout(new BorderLayout());
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		
-		ImagesPanel iP = new ImagesPanel(m);
-		TransformationSelectionPanel tSP = new TransformationSelectionPanel(m);
-		this.add(iP, BorderLayout.CENTER);
-		this.add(tSP, BorderLayout.SOUTH);
+		this.add(new AlgorithmSelectionPanel(m), BorderLayout.NORTH);
+		this.add(new ImagesPanel(m), BorderLayout.CENTER);
+		this.add(new ResolutionSelectionPanel(m), BorderLayout.SOUTH);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	
+	private static final String FRAME_TITLE = "Image Processing Tool";
 	private static final int FRAME_WIDTH = 1050;
 	private static final int FRAME_HEIGHT = 700;
 	private static final long serialVersionUID = 1321394L;

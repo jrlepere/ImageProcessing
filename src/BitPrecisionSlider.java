@@ -1,4 +1,6 @@
+
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.Hashtable;
 
 import javax.swing.JLabel;
@@ -6,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import model.Model;
 
 /**
  * A Slider for selecting the bit precision of the transformed image.
@@ -38,14 +42,29 @@ public class BitPrecisionSlider extends JPanel {
 		
 		// TODO: Discrete??
 		
+		JLabel sliderLabel = new JLabel(""+initialBitPrecision);
+		sliderLabel.setHorizontalTextPosition(JLabel.CENTER);
+		sliderLabel.setHorizontalAlignment(JLabel.CENTER);
+		sliderLabel.setPreferredSize(new Dimension(ResolutionSelectionPanel.DESCRIPTION_HEIGHT,
+				ResolutionSelectionPanel.DESCRIPTION_HEIGHT));
+		
 		bitPrecisionSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				m.setBitPrecision(bitPrecisionSlider.getValue());
+				int bitPrecision = bitPrecisionSlider.getValue();
+				sliderLabel.setText(""+bitPrecision);
+				m.setBitPrecision(bitPrecision);
 			}
 		});
 		
+		JLabel descriptionLabel = new JLabel(" Bit Precision: ");
+		descriptionLabel.setHorizontalTextPosition(JLabel.CENTER);
+		descriptionLabel.setHorizontalAlignment(JLabel.CENTER);
+		descriptionLabel.setPreferredSize(new Dimension(ResolutionSelectionPanel.WEST_DESCRIPTION_WIDTH,
+				ResolutionSelectionPanel.DESCRIPTION_HEIGHT));
+		
 		this.add(bitPrecisionSlider, BorderLayout.CENTER);
-		this.add(new JLabel(" Bit Precision: "), BorderLayout.WEST);
+		this.add(descriptionLabel, BorderLayout.WEST);
+		this.add(sliderLabel, BorderLayout.EAST);
 		
 	}
 	

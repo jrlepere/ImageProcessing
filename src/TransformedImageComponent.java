@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import model.Model;
+
 /**
  * The Transformed Image Component of the application.
  * @author JLepere2
