@@ -99,7 +99,6 @@ public class Model {
 	 * Alert the listeners of a change.
 	 */
 	public void alert() {
-		System.out.println("ALERT");
 		ChangeEvent e = new ChangeEvent(this);
 		for (ChangeListener l : listeners) {
 			l.stateChanged(e);

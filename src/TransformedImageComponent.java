@@ -23,13 +23,11 @@ public class TransformedImageComponent extends JLabel {
 		
 		m.attachListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				System.out.println("Updating Transformed Image");
 				int[][] pixelMatrix = m.getTransformation();
-				int height = pixelMatrix.length;
-				int width = pixelMatrix[0].length;
-				transformedImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
-				for (int y = 0; y < height; y ++) {
-					for (int x = 0; x < width; x ++) {
+				int size = pixelMatrix.length;
+				transformedImage = new BufferedImage(size, size, BufferedImage.TYPE_BYTE_GRAY);
+				for (int y = 0; y < size; y ++) {
+					for (int x = 0; x < size; x ++) {
 						transformedImage.setRGB(x, y, pixelMatrix[y][x]);
 					}
 				}
