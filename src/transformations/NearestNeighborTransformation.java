@@ -17,17 +17,15 @@ public class NearestNeighborTransformation extends ScalingTransformation {
 	}
 
 	public int[][] transform(int[][] image) {
-		
 		int[][] newImage = new int[zoomOutResolution][zoomOutResolution];
 		
 		double ratio = ((double) zoomOutResolution) / image.length;
-		
-		
 		for (int y = 0; y < zoomOutResolution; y ++) {
 			for (int x = 0; x < zoomOutResolution; x ++) {
 				newImage[y][x] = image[(int) (y/ratio)][(int) (x/ratio)];
 			}
 		}
+		
 		return newImage;
 	}
 	

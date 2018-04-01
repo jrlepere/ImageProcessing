@@ -33,6 +33,7 @@ public abstract class ScalingTransformation implements TransformationAlgorithm {
 		parameterSelectionFrame.setLocation(PARAMETER_FRAME_WIDTH, PARAMETER_FRAME_HEIGHT);
 		parameterSelectionFrame.setAlwaysOnTop(true);
 		parameterSelectionFrame.setResizable(false);
+		parameterSelectionFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		// Value Ranges
 		int minValue = 32;
