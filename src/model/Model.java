@@ -24,8 +24,6 @@ public class Model {
 	public Model() {
 		listeners = new LinkedList<>();
 		pixelMatrix = new int[512][512];
-		//algo = new NearestNeighborTransformation();
-		//setAlgorithm(new NearestNeighborTransformation());
 		spatialResolution = 512;   // TODO: un hard code??
 		bitPrecision = 8;   // TODO: un hard code??
 	}
@@ -91,13 +89,13 @@ public class Model {
 		
 		// Spatial Resolution and Contization
 		int bitPrecisionBlockSize = (int) Math.pow(2, 8 - bitPrecision);
-		int bitPrecisionValueMappingRatio = (255 / ((int) Math.pow(2, bitPrecision) - 1));
+		double bitPrecisionValueMappingRatio = (255.0 / (Math.pow(2, bitPrecision) - 1));
 		double spatialResolutionRatio = 512.0 / spatialResolution;
 		for (int y = 0; y < temp.length; y ++) {
 			for (int x = 0; x < temp[0].length; x ++) {
 				int oRGB = pixelMatrix[(int) (y * spatialResolutionRatio)][(int) (x * spatialResolutionRatio)];
 				int oGrayScale = oRGB & 0xff;
-				int nGrayScale = (oGrayScale / bitPrecisionBlockSize) * bitPrecisionValueMappingRatio;
+				int nGrayScale = (int) (((int) (oGrayScale / bitPrecisionBlockSize)) * bitPrecisionValueMappingRatio);
 				temp[y][x] = 0xff000000 + (nGrayScale << 16) + (nGrayScale << 8) + nGrayScale;
 			}
 		}

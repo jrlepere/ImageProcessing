@@ -1,6 +1,12 @@
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -20,6 +26,8 @@ public class TransformedImageComponent extends JLabel {
 	 */
 	public TransformedImageComponent(Model m) {
 		
+		this.setToolTipText("Select to save this image.");
+		
 		this.setHorizontalAlignment(JLabel.CENTER);
 		this.setVerticalAlignment(JLabel.CENTER);
 		
@@ -34,6 +42,34 @@ public class TransformedImageComponent extends JLabel {
 					}
 				}
 				setImageIcon();
+			}
+		});
+		
+		JFileChooser saveChooser = new JFileChooser();
+		
+		this.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {
+				if (saveChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File imageFile = saveChooser.getSelectedFile();
+					try {
+						int[][] pixelMatrix = m.getTransformation();
+						int imageSize = pixelMatrix.length;
+						BufferedImage image = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_INT_RGB);
+						for (int y = 0; y < imageSize; y ++) {
+							for (int x = 0; x < imageSize; x ++) {
+								image.setRGB(x, y, pixelMatrix[y][x]);
+							}
+						}
+						ImageIO.write(image, "jpg", imageFile);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
 		

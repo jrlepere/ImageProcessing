@@ -70,26 +70,41 @@ public class LoadedImageComponent extends JLabel {
 	    ColorConvertOp op = new ColorConvertOp(defaultImage.getColorModel().getColorSpace(), loadedImage.getColorModel().getColorSpace(), null);
 	    op.filter(defaultImage, loadedImage);
 	    
-	    // Set icon.
-	 	ImageIcon icon = new ImageIcon(loadedImage);
-	 	this.setIcon(icon);
-	    
 	    /*
 	     * Loads the pixel matrix from the gray scale values.
+	     * 
 	     * Each rgb pixel is in the following format:
 	     * 	aaaaaaaa | rrrrrrrr | gggggggg | bbbbbbbb
+	     * 
 	     * Since the image was set to gray scale (BufferedImage.TYPE_BYTE_GRAY),
 	     *  the r, g and b components are all the same. Therefore, we need only
-	     *  extract of these values to store in the matrix.
+	     *  extract of these values to store in the matrix. This processing is done
+	     *  in other parts of the program.
+	     * 
+	     * Converts the image to 512x512 by nearest neighbor technique.
 	     */
-	    int[][] pixelMatrix = new int[loadedImage.getHeight()][loadedImage.getWidth()];
-		for (int y = 0; y < loadedImage.getHeight(); y ++) {
-			for (int x = 0; x < loadedImage.getWidth(); x ++) {
-				int p = loadedImage.getRGB(x, y);
-				//pixelMatrix[y][x] = p & 0xff;
+	 	int imageSize = 512; // TODO: un hard code
+	 	int loadedImageHeight = loadedImage.getHeight();
+	 	int loadedImageWidth = loadedImage.getWidth();
+	 	double heightRatio = ((double) loadedImageHeight) / imageSize;
+	 	double widthRatio = ((double) loadedImageWidth) / imageSize;
+	 	int[][] pixelMatrix = new int[imageSize][imageSize];
+		for (int y = 0; y < imageSize; y ++) {
+			for (int x = 0; x < imageSize; x ++) {
+				int p = loadedImage.getRGB((int) (x * widthRatio), (int) (y * heightRatio));
 				pixelMatrix[y][x] = p;
 			}
 		}
+		
+		// Set icon.
+		loadedImage = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_BYTE_GRAY);
+		for (int y = 0; y < imageSize; y ++) {
+			for (int x = 0; x < imageSize; x ++) {
+				loadedImage.setRGB(x, y, pixelMatrix[y][x]);
+			}
+		}
+	 	ImageIcon icon = new ImageIcon(loadedImage);
+	 	this.setIcon(icon);
 		
 		// Alert Model.
 		m.setPixelMatrix(pixelMatrix);
