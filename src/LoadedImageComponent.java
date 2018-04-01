@@ -112,7 +112,7 @@ public class LoadedImageComponent extends JLabel {
 	}
 	
 	private BufferedImage loadedImage;
-	private static final String defaultImagePath = "lena.jpg";
+	private static final String defaultImagePath = "imgs/lena.jpg";
 	private static final long serialVersionUID = 113423452L;
 
 }
