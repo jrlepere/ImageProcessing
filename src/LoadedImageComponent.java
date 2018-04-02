@@ -97,7 +97,7 @@ public class LoadedImageComponent extends JLabel {
 		}
 		
 		// Set icon.
-		loadedImage = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_BYTE_GRAY);
+		loadedImage = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_INT_RGB);
 		for (int y = 0; y < imageSize; y ++) {
 			for (int x = 0; x < imageSize; x ++) {
 				loadedImage.setRGB(x, y, pixelMatrix[y][x]);

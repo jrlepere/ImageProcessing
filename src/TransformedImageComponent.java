@@ -35,7 +35,7 @@ public class TransformedImageComponent extends JLabel {
 			public void stateChanged(ChangeEvent e) {
 				int[][] pixelMatrix = m.getTransformation();
 				int size = pixelMatrix.length;
-				transformedImage = new BufferedImage(size, size, BufferedImage.TYPE_BYTE_GRAY);
+				transformedImage = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
 				for (int y = 0; y < size; y ++) {
 					for (int x = 0; x < size; x ++) {
 						transformedImage.setRGB(x, y, pixelMatrix[y][x]);
