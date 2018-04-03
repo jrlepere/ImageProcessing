@@ -27,7 +27,8 @@ public class AlgorithmSelectionPanel extends JPanel {
 		
 		TransformationAlgorithm[] algos = new TransformationAlgorithm[] {
 			new NearestNeighborTransformation(m),
-			new LinearInterpolationTransformation(m)
+			new LinearInterpolationTransformation(m, true),
+			new LinearInterpolationTransformation(m, false)
 		};
 		
 		JComboBox<TransformationAlgorithm> algoSelectionBox = new JComboBox<>(algos);
