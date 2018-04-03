@@ -1,3 +1,4 @@
+package main_frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import model.Model;
+import transformations.BiLinearInterpolationTransformation;
 import transformations.LinearInterpolationTransformation;
 import transformations.NearestNeighborTransformation;
 import transformations.TransformationAlgorithm;
@@ -28,7 +30,8 @@ public class AlgorithmSelectionPanel extends JPanel {
 		TransformationAlgorithm[] algos = new TransformationAlgorithm[] {
 			new NearestNeighborTransformation(m),
 			new LinearInterpolationTransformation(m, true),
-			new LinearInterpolationTransformation(m, false)
+			new LinearInterpolationTransformation(m, false),
+			new BiLinearInterpolationTransformation(m)
 		};
 		
 		JComboBox<TransformationAlgorithm> algoSelectionBox = new JComboBox<>(algos);

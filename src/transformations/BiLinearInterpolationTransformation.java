@@ -3,20 +3,18 @@ package transformations;
 import model.Model;
 
 /**
- * Linear interpolation transform with respect to X and Y. 
+ * BiLinear interpolation transform with respect to X and Y. 
  * @author JLepere2
  * @date 03/29/2018
  */
-public class LinearInterpolationTransformation extends ScalingTransformation {
+public class BiLinearInterpolationTransformation extends ScalingTransformation {
 
 	/**
-	 * Creates an object that defines the linear transformation.
+	 * Creates an object that defines the bilinear transformation.
 	 * @param m the Model for MVC.
-	 * @param respectX true to interpolate with respect to x, false with respect to y.
 	 */
-	public LinearInterpolationTransformation(Model m, boolean respectX) {
+	public BiLinearInterpolationTransformation(Model m) {
 		super(m);
-		respX = respectX;
 	}
 	
 	public int[][] transform(int[][] image) {
@@ -31,7 +29,6 @@ public class LinearInterpolationTransformation extends ScalingTransformation {
 		return newImage;
 	}
 	
-
 	private int getNewPixelValue(int newX, int newY, int zoomOutResolution, int[][] image) {
 		
 		/*
@@ -64,7 +61,17 @@ public class LinearInterpolationTransformation extends ScalingTransformation {
 		
 		int newPixelValue;
 		
-		if (respX && x1 != x2) {
+		if (x1 != x2 && y1 != y2) {
+			// Bilinear interpolation
+			
+			double q11_f = (image[y1][x1] & 0xff) * (x2 - x) * (y2 - y);
+			double q21_f = (image[y1][x2] & 0xff) * (x - x1) * (y2 - y);
+			double q12_f = (image[y2][x1] & 0xff) * (x2 - x) * (y - y1);
+			double q22_f = (image[y2][x2] & 0xff) * (x - x1) * (y - y1);
+			
+			newPixelValue = (int) ((1.0/((x2 - x1) * (y2 - y1))) * (q11_f + q21_f + q12_f + q22_f));
+			
+		} else if (x1 != x2) {
 			// Only interpolate in X
 			
 			double q11_f = (image[y1][x1] & 0xff) * (x2 - x);
@@ -72,7 +79,7 @@ public class LinearInterpolationTransformation extends ScalingTransformation {
 			
 			newPixelValue = (int) (1.0/((x2 - x1)) * (q11_f + q21_f));
 			
-		} else if (!respX && y1 != y2) {
+		} else if (y1 != y2) {
 			// Only interpolate in y
 			
 			double q11_f = (image[y1][x1] & 0xff) * (y2 - y);
@@ -92,12 +99,7 @@ public class LinearInterpolationTransformation extends ScalingTransformation {
 	}
 	
 	public String toString() {
-		String s = "Linear Interpolation ";
-		if (respX) s += "X";
-		else s += "Y";
-		return s;
+		return "BiLinear Interpolation ";
 	}
-	
-	private boolean respX;
 	
 }

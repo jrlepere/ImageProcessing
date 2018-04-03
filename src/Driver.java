@@ -1,3 +1,4 @@
+import main_frame.MainFrame;
 import model.Model;
 import transformations.NearestNeighborTransformation;
 

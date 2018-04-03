@@ -1,3 +1,4 @@
+package main_frame;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -12,62 +13,62 @@ import javax.swing.event.ChangeListener;
 import model.Model;
 
 /**
- * A Slider for selecting the bit precision of the transformed image.
+ * The slider to zoom in on the loaded image.
  * @author JLepere2
  * @date 03/30/2018
  */
-public class BitPrecisionSlider extends JPanel {
+public class ZoomInSlider extends JPanel {
 
 	/**
-	 * Creates a Bit Precision Slider.
+	 * Creates the slider for zooming in on the image.
 	 * @param m the Model for MVC.
 	 */
-	public BitPrecisionSlider(Model m) {
+	public ZoomInSlider(Model m) {
 		
 		this.setLayout(new BorderLayout());
 		
-		int minBitPrecision = 1;
-		int maxBitPrecision = 8;
-		int initialBitPrecision = maxBitPrecision;
+		int minZoom = 32;
+		int maxZoom = 512;
+		int initialZoom = maxZoom;
 		
-		JSlider bitPrecisionSlider = new JSlider(minBitPrecision, maxBitPrecision, initialBitPrecision);
+		JSlider zoomInSlider = new JSlider(minZoom, maxZoom, initialZoom);
 		
-		bitPrecisionSlider.setMajorTickSpacing(1);
-		bitPrecisionSlider.setPaintTicks(true);
+		zoomInSlider.setMajorTickSpacing(480);
+		zoomInSlider.setPaintTicks(true);
 		
 		Hashtable<Integer, JLabel> tickLabels = new Hashtable<>();
-		for (int i = 1; i <= 8; i ++) tickLabels.put(i, new JLabel(""+i));
-		bitPrecisionSlider.setLabelTable(tickLabels);
-		bitPrecisionSlider.setPaintLabels(true);
+		tickLabels.put(minZoom, new JLabel(""+minZoom));
+		tickLabels.put(maxZoom, new JLabel(""+maxZoom));
+		zoomInSlider.setLabelTable(tickLabels);
+		zoomInSlider.setPaintLabels(true);
 		
 		// TODO: Discrete??
 		
-		JLabel sliderLabel = new JLabel(""+initialBitPrecision);
+		JLabel sliderLabel = new JLabel(""+initialZoom);
 		sliderLabel.setHorizontalTextPosition(JLabel.CENTER);
 		sliderLabel.setHorizontalAlignment(JLabel.CENTER);
 		sliderLabel.setPreferredSize(new Dimension(ResolutionSelectionPanel.DESCRIPTION_HEIGHT,
 				ResolutionSelectionPanel.DESCRIPTION_HEIGHT));
 		
-		bitPrecisionSlider.addChangeListener(new ChangeListener() {
+		zoomInSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				int bitPrecision = bitPrecisionSlider.getValue();
-				sliderLabel.setText(""+bitPrecision);
-				m.setBitPrecision(bitPrecision);
+				int zoomInValue = zoomInSlider.getValue();
+				sliderLabel.setText(""+zoomInValue);
+				m.setSpatialResolution(zoomInValue);
 			}
 		});
 		
-		JLabel descriptionLabel = new JLabel(" Bit Precision: ");
+		JLabel descriptionLabel = new JLabel(" Zoom in: ");
 		descriptionLabel.setHorizontalTextPosition(JLabel.CENTER);
 		descriptionLabel.setHorizontalAlignment(JLabel.CENTER);
 		descriptionLabel.setPreferredSize(new Dimension(ResolutionSelectionPanel.WEST_DESCRIPTION_WIDTH,
 				ResolutionSelectionPanel.DESCRIPTION_HEIGHT));
 		
-		this.add(bitPrecisionSlider, BorderLayout.CENTER);
+		this.add(zoomInSlider, BorderLayout.CENTER);
 		this.add(descriptionLabel, BorderLayout.WEST);
 		this.add(sliderLabel, BorderLayout.EAST);
-		
 	}
-	
-	private static final long serialVersionUID = 143646L;
+
+	private static final long serialVersionUID = 11328442L;
 	
 }

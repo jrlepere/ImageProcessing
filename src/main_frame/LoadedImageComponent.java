@@ -1,3 +1,4 @@
+package main_frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -9,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.Model;
@@ -42,33 +44,36 @@ public class LoadedImageComponent extends JLabel {
 				if (imageChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					File image = imageChooser.getSelectedFile();
 					try {
-						loadImage(image, m);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						loadImage(ImageIO.read(image), m);
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "There was an error loading the image. Make sure the image is a JPG file.", "ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
 		});
 		
 		try {
-			loadImage(new File(defaultImagePath), m);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+			loadImage(ImageIO.read(LoadedImageComponent.class.getResourceAsStream(defaultImagePath)), m);
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "There was an error loading the image. Make sure the image is a JPG file.", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}	
 		
 	}
 	
-	private void loadImage(File image, Model m) throws IOException {
+	/**
+	 * Loads a buffered image into the scene.
+	 * @param image the image to load.
+	 * @param m the Model for MVC.
+	 * @throws IOException
+	 */
+	private void loadImage(BufferedImage image, Model m) throws IOException {
 		/*
-		 * Load the default Lena image and creates the loaded gray scale image buffer.
+		 * Load the image and creates the loaded gray scale image buffer.
 		 * https://groups.google.com/forum/#!msg/comp.lang.java.programmer/EwqPncLARFQ/1M7UZKs2xNQJ
 		 */
-		BufferedImage defaultImage = ImageIO.read(image);
-		loadedImage = new BufferedImage(defaultImage.getWidth(), defaultImage.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
-	    ColorConvertOp op = new ColorConvertOp(defaultImage.getColorModel().getColorSpace(), loadedImage.getColorModel().getColorSpace(), null);
-	    op.filter(defaultImage, loadedImage);
+		loadedImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+	    ColorConvertOp op = new ColorConvertOp(image.getColorModel().getColorSpace(), loadedImage.getColorModel().getColorSpace(), null);
+	    op.filter(image, loadedImage);
 	    
 	    /*
 	     * Loads the pixel matrix from the gray scale values.
@@ -112,7 +117,7 @@ public class LoadedImageComponent extends JLabel {
 	}
 	
 	private BufferedImage loadedImage;
-	private static final String defaultImagePath = "imgs/lena.jpg";
+	private static final String defaultImagePath = "lena.jpg";
 	private static final long serialVersionUID = 113423452L;
 
 }

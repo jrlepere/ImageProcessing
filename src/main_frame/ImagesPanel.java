@@ -1,3 +1,4 @@
+package main_frame;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
