@@ -84,22 +84,21 @@ public class Model {
 	 */
 	public int[][] getTransformation() {
 		
-		//int[][] temp = new int[pixelMatrix.length][pixelMatrix[0].length];
-		int[][] temp = new int[spatialResolution][spatialResolution];
+		// temporary matrix for converting to selected bit precision
+		int[][] temp = new int[LOADED_PICTURE_RESOLUTION][LOADED_PICTURE_RESOLUTION];
 		
-		// Spatial Resolution and Contization
+		// set new values
 		int bitPrecisionBlockSize = (int) Math.pow(2, 8 - bitPrecision);
 		double bitPrecisionValueMappingRatio = (255.0 / (Math.pow(2, bitPrecision) - 1));
-		double spatialResolutionRatio = 512.0 / spatialResolution;
-		for (int y = 0; y < temp.length; y ++) {
-			for (int x = 0; x < temp[0].length; x ++) {
-				int oRGB = pixelMatrix[(int) (y * spatialResolutionRatio)][(int) (x * spatialResolutionRatio)];
-				int oGrayScale = oRGB & 0xff;
+		for (int y = 0; y < LOADED_PICTURE_RESOLUTION; y ++) {
+			for (int x = 0; x < LOADED_PICTURE_RESOLUTION; x ++) {
+				int oGrayScale = pixelMatrix[y][x] & 0xff;
 				int nGrayScale = (int) (((int) (oGrayScale / bitPrecisionBlockSize)) * bitPrecisionValueMappingRatio);
 				temp[y][x] = 0xff000000 + (nGrayScale << 16) + (nGrayScale << 8) + nGrayScale;
 			}
 		}
 		
+		// return transformation of new algorithm with bit precision applied
 		return algo.transform(temp);
 	}
 	
@@ -126,5 +125,8 @@ public class Model {
 	private TransformationAlgorithm algo;
 	private int spatialResolution;
 	private int bitPrecision;
+	public static final int LOADED_PICTURE_RESOLUTION = 512;
+	public static final int MAX_RESOLUTION = 512;
+	public static final int MIN_RESOLUTION = 32;
 	
 }

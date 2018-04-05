@@ -10,6 +10,7 @@ import model.Model;
 import transformations.BiLinearInterpolationTransformation;
 import transformations.LinearInterpolationTransformation;
 import transformations.NearestNeighborTransformation;
+import transformations.NegativeTransformation;
 import transformations.TransformationAlgorithm;
 
 /**
@@ -31,7 +32,8 @@ public class AlgorithmSelectionPanel extends JPanel {
 			new NearestNeighborTransformation(m),
 			new LinearInterpolationTransformation(m, true),
 			new LinearInterpolationTransformation(m, false),
-			new BiLinearInterpolationTransformation(m)
+			new BiLinearInterpolationTransformation(m),
+			new NegativeTransformation()
 		};
 		
 		JComboBox<TransformationAlgorithm> algoSelectionBox = new JComboBox<>(algos);

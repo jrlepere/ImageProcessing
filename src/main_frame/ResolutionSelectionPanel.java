@@ -18,9 +18,8 @@ public class ResolutionSelectionPanel extends JPanel {
 	 */
 	public ResolutionSelectionPanel(Model m) {
 		
-		this.setLayout(new GridLayout(2, 1));
+		this.setLayout(new GridLayout(1, 1));
 		
-		this.add(new ZoomInSlider(m));
 		this.add(new BitPrecisionSlider(m));
 		
 	}

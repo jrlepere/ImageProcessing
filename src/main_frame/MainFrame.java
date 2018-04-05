@@ -34,7 +34,7 @@ public class MainFrame extends JFrame{
 	
 	private static final String FRAME_TITLE = "Image Processing Tool";
 	private static final int FRAME_WIDTH = 1050;
-	private static final int FRAME_HEIGHT = 700;
+	private static final int FRAME_HEIGHT = 620;
 	private static final long serialVersionUID = 1321394L;
 
 }

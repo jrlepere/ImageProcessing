@@ -17,9 +17,17 @@ public class NearestNeighborTransformation extends ScalingTransformation {
 	}
 
 	public int[][] transform(int[][] image) {
+		
+		// scale down the image before scaling back up
+		image = scaleDown(image);
+		
+		// new image pixel matrix
 		int[][] newImage = new int[zoomOutResolution][zoomOutResolution];
 		
+		// ratio to scale up
 		double ratio = ((double) zoomOutResolution) / image.length;
+		
+		// set new pixel matrix
 		for (int y = 0; y < zoomOutResolution; y ++) {
 			for (int x = 0; x < zoomOutResolution; x ++) {
 				newImage[y][x] = image[(int) (y/ratio)][(int) (x/ratio)];

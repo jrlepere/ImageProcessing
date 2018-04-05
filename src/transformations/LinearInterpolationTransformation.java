@@ -20,8 +20,14 @@ public class LinearInterpolationTransformation extends ScalingTransformation {
 	}
 	
 	public int[][] transform(int[][] image) {
+		
+		// scale down the image before scaling back up
+		image = scaleDown(image);
+		
+		// new image pixel matrix
 		int[][] newImage = new int[zoomOutResolution][zoomOutResolution];
 		
+		// set the new pixel matrix
 		for (int y = 0; y < zoomOutResolution; y ++) {
 			for (int x = 0; x < zoomOutResolution; x ++) {
 				newImage[y][x] = getNewPixelValue(x, y, zoomOutResolution, image);
