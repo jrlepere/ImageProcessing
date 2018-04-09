@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import model.Model;
 import transformations.BiLinearInterpolationTransformation;
+import transformations.HistogramEqualization;
 import transformations.LinearInterpolationTransformation;
 import transformations.NearestNeighborTransformation;
 import transformations.NegativeTransformation;
@@ -28,12 +29,16 @@ public class AlgorithmSelectionPanel extends JPanel {
 		
 		this.setLayout(new GridLayout(1, 1));
 		
+		TransformationAlgorithm initialAlgo = new NearestNeighborTransformation(m);
+		m.setAlgorithm(initialAlgo);
+		
 		TransformationAlgorithm[] algos = new TransformationAlgorithm[] {
-			new NearestNeighborTransformation(m),
+			initialAlgo,
 			new LinearInterpolationTransformation(m, true),
 			new LinearInterpolationTransformation(m, false),
 			new BiLinearInterpolationTransformation(m),
-			new NegativeTransformation()
+			new NegativeTransformation(),
+			new HistogramEqualization()
 		};
 		
 		JComboBox<TransformationAlgorithm> algoSelectionBox = new JComboBox<>(algos);

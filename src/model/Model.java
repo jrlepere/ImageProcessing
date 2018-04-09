@@ -111,6 +111,14 @@ public class Model {
 	}
 	
 	/**
+	 * Gets the current bit precision.
+	 * @return the bit precision.
+	 */
+	public int getBitPrecision() {
+		return bitPrecision;
+	}
+	
+	/**
 	 * Alert the listeners of a change.
 	 */
 	public void alert() {

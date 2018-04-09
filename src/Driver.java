@@ -1,6 +1,5 @@
 import main_frame.MainFrame;
 import model.Model;
-import transformations.NearestNeighborTransformation;
 
 /**
  * Main class to run the Image Transformation Project
@@ -16,7 +15,6 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		Model m = new Model();
-		m.setAlgorithm(new NearestNeighborTransformation(m));
 		
 		MainFrame frame = new MainFrame(m);
 		frame.setVisible(true);
