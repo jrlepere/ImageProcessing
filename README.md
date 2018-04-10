@@ -24,3 +24,4 @@ Any bugs or feedback can be directed to Jake Lepere - jlepere2@yahoo.com.
 
 # Sample Output
 ![alt text](https://github.com/jrlepere/ImageTransformationProject/blob/master/imgs/NearestNeighbor_512-32-512_7.png)
+![alt text](https://github.com/jrlepere/ImageTransformationProject/blob/master/imgs/LocalHistogramEqualization_5_2.png)
