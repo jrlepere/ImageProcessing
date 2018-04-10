@@ -3,11 +3,11 @@
 - Original image is shown on the left. Transformed image is shown on the right.
 - Parameter selection frames unique for each algorithm.
 
-# Running The Application
+# How To Run
 - The program has been compiled into a jar file with a default image (512x512 lena.jpg) to perform the transformations.
 - The src files are available as well, so if you would like to run the program from the command line, that is also acceptable. To do this, run javac Driver.java followed by java Driver from the command line.
 
-# Using The Application
+# How To Use
 - TRANSFORMATIONS: Algorithm selection drop down box is located at the top of the frame. Following are the current transformations available:
   - Nearest Neighbor
   - Linear Interpolation (X & Y)
