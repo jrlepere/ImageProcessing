@@ -8,7 +8,7 @@
 - The src files are included with the submission as well, so if you would like to run the program from the command line, that is acceptable as well. To do this, run javac Driver.java followed by java Driver.
 
 # Using the application
-- TRANSFORMATIONS:
+- TRANSFORMATIONS: Algorithm selection drop down box is located at the top of the frame. Following are the current transformations available:
   - Nearest Neighbor
   - Linear Interpolation (X & Y)
   - Bilinear Interpolation
