@@ -1,11 +1,11 @@
 package transformations;
 
 /**
- * Histogram equalization algorithm for contrast enhancement.
+ * Global histogram equalization algorithm for contrast enhancement.
  * @author JLepere2
  * @date 04/10/2018
  */
-public class HistogramEqualization implements TransformationAlgorithm {
+public class GlobalHistogramEqualization implements TransformationAlgorithm {
 	
 	public int[][] transform(int[][] image) {
 		
@@ -54,7 +54,7 @@ public class HistogramEqualization implements TransformationAlgorithm {
 	public void showSelectionFrame(boolean visible) {}
 	
 	public String toString() {
-		return "Histrogram Equalization";
+		return "Global Histrogram Equalization";
 	}
 	
 }

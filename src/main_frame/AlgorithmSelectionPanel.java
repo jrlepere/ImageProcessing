@@ -8,8 +8,9 @@ import javax.swing.JPanel;
 
 import model.Model;
 import transformations.BiLinearInterpolationTransformation;
-import transformations.HistogramEqualization;
+import transformations.GlobalHistogramEqualization;
 import transformations.LinearInterpolationTransformation;
+import transformations.LocalHistogramEqualization;
 import transformations.NearestNeighborTransformation;
 import transformations.NegativeTransformation;
 import transformations.TransformationAlgorithm;
@@ -38,7 +39,8 @@ public class AlgorithmSelectionPanel extends JPanel {
 			new LinearInterpolationTransformation(m, false),
 			new BiLinearInterpolationTransformation(m),
 			new NegativeTransformation(),
-			new HistogramEqualization()
+			new GlobalHistogramEqualization(),
+			new LocalHistogramEqualization(m)
 		};
 		
 		JComboBox<TransformationAlgorithm> algoSelectionBox = new JComboBox<>(algos);

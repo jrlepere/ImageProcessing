@@ -2,6 +2,8 @@ package main_frame;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import model.Model;
 
@@ -18,14 +20,32 @@ public class ResolutionSelectionPanel extends JPanel {
 	 */
 	public ResolutionSelectionPanel(Model m) {
 		
+		// layout
 		this.setLayout(new GridLayout(1, 1));
 		
-		this.add(new BitPrecisionSlider(m));
+		// slider range values
+		int minValue = 1;
+		int maxValue = 8;
+		int initialValue = maxValue;
+		
+		// create resolution slider object
+		SliderComponent resolutionSlider = new SliderComponent(m, " Bit Precision: ", minValue, maxValue, initialValue);
+		
+		// add change listener
+		resolutionSlider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				m.setBitPrecision(resolutionSlider.getValue());
+			}
+		});
+		
+		// show ticks all
+		resolutionSlider.setTicksAll();
+		
+		// add to jpanel
+		this.add(resolutionSlider);
 		
 	}
 	
-	public static final int WEST_DESCRIPTION_WIDTH = 100;
-	public static final int DESCRIPTION_HEIGHT = 50;
 	private static final long serialVersionUID = 2232421L;
 
 }

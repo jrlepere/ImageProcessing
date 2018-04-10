@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import main_frame.ZoomSlider;
+import main_frame.SliderComponent;
 import model.Model;
 
 /**
@@ -27,13 +27,15 @@ public abstract class ScalingTransformation implements TransformationAlgorithm {
 		// Frame Initialization
 		parameterSelectionFrame = new JFrame("Parameter Selection: " + toString());
 		parameterSelectionFrame.setLayout(new GridLayout(2, 1));
-		parameterSelectionFrame.setLocation(PARAMETER_FRAME_WIDTH, PARAMETER_FRAME_HEIGHT);
+		parameterSelectionFrame.setSize(PARAMETER_FRAME_WIDTH, PARAMETER_FRAME_HEIGHT);
+		parameterSelectionFrame.setLocationRelativeTo(null);
 		parameterSelectionFrame.setAlwaysOnTop(true);
 		parameterSelectionFrame.setResizable(false);
 		parameterSelectionFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		ZoomSlider zoomInSlider = new ZoomSlider(m, " Zoom in: ");
-		ZoomSlider zoomOutSlider = new ZoomSlider(m, " Zoom out: ");
+		// zoom slider components
+		SliderComponent zoomInSlider = new SliderComponent(m, " Zoom in: ", Model.MIN_RESOLUTION, Model.MAX_RESOLUTION, Model.MAX_RESOLUTION);
+		SliderComponent zoomOutSlider = new SliderComponent(m, " Zoom out: ", Model.MIN_RESOLUTION, Model.MAX_RESOLUTION, Model.MAX_RESOLUTION);
 		
 		zoomInSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
