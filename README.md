@@ -5,7 +5,7 @@
 
 # Running the application
 - The program has been compiled into a jar file with a default image (512x512 lena.jpg) to perform the transformations.
-- The src files are included with the submission as well, so if you would like to run the program from the command line, that is acceptable as well. To do this, run javac Driver.java followed by java Driver.
+- The src files are included as well, so if you would like to run the program from the command line, that is also acceptable. To do this, run javac Driver.java followed by java Driver from the command line.
 
 # Using the application
 - TRANSFORMATIONS: Algorithm selection drop down box is located at the top of the frame. Following are the current transformations available:
