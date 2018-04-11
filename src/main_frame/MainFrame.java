@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import main_frame.menu.MenuBar;
 import model.Model;
 
 /**
@@ -27,6 +28,8 @@ public class MainFrame extends JFrame{
 		this.add(new AlgorithmSelectionPanel(m), BorderLayout.NORTH);
 		this.add(new ImagesPanel(m), BorderLayout.CENTER);
 		this.add(new ResolutionSelectionPanel(m), BorderLayout.SOUTH);
+		
+		this.setJMenuBar(new MenuBar(m));
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

@@ -23,13 +23,13 @@ public class ResolutionSelectionPanel extends JPanel {
 		// layout
 		this.setLayout(new GridLayout(1, 1));
 		
-		// slider range values
-		int minValue = 1;
-		int maxValue = 8;
-		int initialValue = maxValue;
+		// bit precision slider range values
+		int bPrecMinValue = 1;
+		int bPrecMaxValue = 8;
+		int bPrecInitialValue = bPrecMaxValue;
 		
-		// create resolution slider object
-		SliderComponent resolutionSlider = new SliderComponent(m, " Bit Precision: ", minValue, maxValue, initialValue);
+		// create bit resolution slider object
+		SliderComponent resolutionSlider = new SliderComponent(m, " Bit Precision: ", bPrecMinValue, bPrecMaxValue, bPrecInitialValue);
 		
 		// add change listener
 		resolutionSlider.addChangeListener(new ChangeListener() {

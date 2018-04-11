@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import main_frame.menu.BitPlaneMenu;
 import transformations.TransformationAlgorithm;
 
 /**
@@ -26,6 +27,7 @@ public class Model {
 		pixelMatrix = new int[512][512];
 		spatialResolution = 512;   // TODO: un hard code??
 		bitPrecision = 8;   // TODO: un hard code??
+		bitPlaneMask = BitPlaneMenu.INITIAL_PLANE_VALUE;
 	}
 	
 	/**
@@ -74,6 +76,18 @@ public class Model {
 		alert();
 	}
 	
+	/**
+	 * Set the bit plane.
+	 * @param newBitPlaneMask the bit plane.
+	 */
+	public void setBitPlane(int newBitPlaneMask) {
+		bitPlaneMask = newBitPlaneMask;
+		alert();
+	}
+	
+	/**
+	 * Alert the model that the algorithm specific parameters changed.
+	 */
 	public void algorithmParametersChanged() {
 		alert();
 	}
@@ -98,8 +112,32 @@ public class Model {
 			}
 		}
 		
-		// return transformation of new algorithm with bit precision applied
-		return algo.transform(temp);
+		// get transformation of new algorithm with bit precision applied
+		temp = algo.transform(temp);
+		
+		// perform mask
+		if (bitPlaneMask != BitPlaneMenu.BIT_PLANE_ALL_VALUE) {
+			int newImageSize = temp.length;
+			for (int y = 0; y < newImageSize; y ++) {
+				for (int x = 0; x < newImageSize; x ++) {
+					
+					// original gray value
+					int gv = (temp[y][x] & 0xff);
+					
+					// mask gv by selected bit plane
+					gv = gv & (0x01 << (bitPlaneMask - 1));
+					
+					// set so white and black
+					if (gv != 0) gv = 0xff;
+					
+					// set new gv
+					temp[y][x] = 0xff000000 + (gv << 16) + (gv << 8) + gv;
+					
+				}
+			}
+		}
+		
+		return temp;
 	}
 	
 	/**
@@ -133,6 +171,7 @@ public class Model {
 	private TransformationAlgorithm algo;
 	private int spatialResolution;
 	private int bitPrecision;
+	private int bitPlaneMask;
 	public static final int LOADED_PICTURE_RESOLUTION = 512;
 	public static final int MAX_RESOLUTION = 512;
 	public static final int MIN_RESOLUTION = 32;
