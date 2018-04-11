@@ -1,6 +1,5 @@
 package main_frame.menu;
 
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import model.Model;
@@ -18,15 +17,9 @@ public class MenuBar extends JMenuBar {
 	 */
 	public MenuBar(Model m) {
 		
-		// View menu component
-		JMenu viewMenu = new JMenu("View");
-		//viewMenu.setMnemonic(KeyEvent.VK_V);
-		
-		
-		viewMenu.add(new BitPlaneMenu(m));
-		
 		// add menus
-		this.add(viewMenu);
+		this.add(new FileMenu(m));
+		this.add(new ViewMenu(m));
 		
 	}
 	

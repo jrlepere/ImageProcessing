@@ -157,6 +157,14 @@ public class Model {
 	}
 	
 	/**
+	 * Gets the loaded pixel matrix.
+	 * @return the loaded pixel matrix.
+	 */
+	public int[][] getPixelMatrix() {
+		return pixelMatrix;
+	}
+	
+	/**
 	 * Alert the listeners of a change.
 	 */
 	public void alert() {
