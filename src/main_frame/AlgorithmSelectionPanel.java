@@ -7,13 +7,13 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import model.Model;
-import transformations.BiLinearInterpolationTransformation;
-import transformations.GlobalHistogramEqualization;
-import transformations.LinearInterpolationTransformation;
-import transformations.LocalHistogramEqualization;
-import transformations.NearestNeighborTransformation;
 import transformations.NegativeTransformation;
 import transformations.TransformationAlgorithm;
+import transformations.histogram_equalization.GlobalHistogramEqualization;
+import transformations.histogram_equalization.LocalHistogramEqualization;
+import transformations.scaling.BiLinearInterpolationTransformation;
+import transformations.scaling.LinearInterpolationTransformation;
+import transformations.scaling.NearestNeighborTransformation;
 
 /**
  * A JPanel for selecting the algorithm to apply to the loaded image.

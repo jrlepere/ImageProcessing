@@ -1,4 +1,4 @@
-package transformations;
+package transformations.scaling;
 
 import model.Model;
 

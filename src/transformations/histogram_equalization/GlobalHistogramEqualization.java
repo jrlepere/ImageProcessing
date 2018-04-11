@@ -1,4 +1,6 @@
-package transformations;
+package transformations.histogram_equalization;
+
+import transformations.TransformationAlgorithm;
 
 /**
  * Global histogram equalization algorithm for contrast enhancement.

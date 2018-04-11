@@ -1,4 +1,4 @@
-package transformations;
+package transformations.scaling;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -7,6 +7,7 @@ import javax.swing.event.ChangeListener;
 
 import main_frame.SliderComponent;
 import model.Model;
+import transformations.TransformationAlgorithm;
 
 /**
  * Abstract class for definition of scaling algorithms.

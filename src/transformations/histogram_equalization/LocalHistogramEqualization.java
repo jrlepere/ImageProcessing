@@ -1,4 +1,4 @@
-package transformations;
+package transformations.histogram_equalization;
 
 import java.awt.GridLayout;
 
@@ -8,6 +8,7 @@ import javax.swing.event.ChangeListener;
 
 import main_frame.SliderComponent;
 import model.Model;
+import transformations.TransformationAlgorithm;
 
 /**
  * Global histogram equalization algorithm for contrast enhancement.
