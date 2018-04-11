@@ -15,9 +15,14 @@
   - Negative
   - Global Histogram Equalization
   - Local Histogram Equalization
+- ADDING AN IMAGE: There are two ways to add an image to the program. Regardless, the image will be converted to gray scale and transformed to 512 x 512.
+  - Select "File > Load Image" from the menu bar.
+  - Select the loaded image on the left of the frame.
+- SAVING AN IMAGE: There are two ways to save the transformed image.
+  - Select "File > Save Image" from the menu bar.
+  - Select the transformed image on the right of the frame.
 - BIT PRECISION: The user also has the ability to change the bit precision, in the range [1,8] bits, used for storing the pixels. This is done using the slider at the bottom of the frame.
-- ADDING: Adding new images is also enabled. This can be done by selecting the image on the left of the frame. A selection frame then appears and allows the user to navigate their system and load a new JPG image. For purposes of the project, the image is then transformed to 512x512 and gray scaled.
-- SAVING: Saving the images is also a possibility. Similar to loading a new image, the user can select the transformed image. A prompt will appear giving the option to save.
+- BIT PLANE: To view different bit planes, select "View > Bit Plane" and choose the desired bit plane.
 
 # Feedback
 Any bugs or feedback can be directed to Jake Lepere - jlepere2@yahoo.com.
