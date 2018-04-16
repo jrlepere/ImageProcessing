@@ -1,12 +1,15 @@
 package transformations.histogram_equalization;
 
 import java.awt.GridLayout;
+import java.util.Hashtable;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import main_frame.SliderComponent;
+import main_frame.slider_component.SliderComponent;
+import main_frame.slider_component.ValueLabelConversion;
 import model.Model;
 import transformations.TransformationAlgorithm;
 
@@ -34,16 +37,22 @@ public class LocalHistogramEqualization implements TransformationAlgorithm {
 		
 		// slider to set mask size
 		int minValue = 1;
-		int maxValue = 5;
+		int maxValue = 4;
 		int initialValue = 1;
-		SliderComponent maskSizeSlider = new SliderComponent(m, " Mask Offset: ", minValue, maxValue, initialValue);
+		SliderComponent maskSizeSlider = new SliderComponent(m, " Mask Size (NxN): ", minValue, maxValue, initialValue, new ValueLabelConversion() {
+			public int convertForPresentation(int sliderValue) {
+				return getMaskSize(sliderValue);
+			}
+		});
 		maskSizeSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				maskOffset = maskSizeSlider.getValue();
 				m.algorithmParametersChanged();
 			}
 		});
-		maskSizeSlider.setTicksAll();
+		Hashtable<Integer, JLabel> tickLabels = new Hashtable<>();
+		for (int i = minValue; i <= maxValue; i ++) tickLabels.put(i, new JLabel(""+getMaskSize(i)));
+		maskSizeSlider.setTicks(tickLabels);
 		
 		// add components to frame
 		parameterSelectionFrame.add(maskSizeSlider);
@@ -100,6 +109,14 @@ public class LocalHistogramEqualization implements TransformationAlgorithm {
 	
 	public String toString() {
 		return "Local Histrogram Equalization";
+	}
+	
+	/**
+	 * Convert the offset to the size for the mask.
+	 * @param offset 2 x offset + 1
+	 */
+	private int getMaskSize(int offset) {
+		return 2 * offset + 1;
 	}
 	
 	private JFrame parameterSelectionFrame;

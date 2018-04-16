@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import main_frame.images_panel.ImagesPanel;
 import main_frame.menu.MenuBar;
 import model.Model;
 

@@ -1,4 +1,4 @@
-package main_frame;
+package main_frame.images_panel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;

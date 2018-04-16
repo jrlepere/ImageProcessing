@@ -5,7 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import main_frame.SliderComponent;
+import main_frame.slider_component.NoValueConversion;
+import main_frame.slider_component.SliderComponent;
 import model.Model;
 import transformations.TransformationAlgorithm;
 
@@ -35,8 +36,8 @@ public abstract class ScalingTransformation implements TransformationAlgorithm {
 		parameterSelectionFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		// zoom slider components
-		SliderComponent zoomInSlider = new SliderComponent(m, " Zoom in: ", Model.MIN_RESOLUTION, Model.MAX_RESOLUTION, Model.MAX_RESOLUTION);
-		SliderComponent zoomOutSlider = new SliderComponent(m, " Zoom out: ", Model.MIN_RESOLUTION, Model.MAX_RESOLUTION, Model.MAX_RESOLUTION);
+		SliderComponent zoomInSlider = new SliderComponent(m, " Zoom in: ", Model.MIN_RESOLUTION, Model.MAX_RESOLUTION, Model.MAX_RESOLUTION, new NoValueConversion());
+		SliderComponent zoomOutSlider = new SliderComponent(m, " Zoom out: ", Model.MIN_RESOLUTION, Model.MAX_RESOLUTION, Model.MAX_RESOLUTION, new NoValueConversion());
 		
 		zoomInSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {

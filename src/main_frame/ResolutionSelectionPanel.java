@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import main_frame.slider_component.NoValueConversion;
+import main_frame.slider_component.SliderComponent;
 import model.Model;
 
 /**
@@ -29,7 +31,7 @@ public class ResolutionSelectionPanel extends JPanel {
 		int bPrecInitialValue = bPrecMaxValue;
 		
 		// create bit resolution slider object
-		SliderComponent resolutionSlider = new SliderComponent(m, " Bit Precision: ", bPrecMinValue, bPrecMaxValue, bPrecInitialValue);
+		SliderComponent resolutionSlider = new SliderComponent(m, " Bit Precision: ", bPrecMinValue, bPrecMaxValue, bPrecInitialValue, new NoValueConversion());
 		
 		// add change listener
 		resolutionSlider.addChangeListener(new ChangeListener() {

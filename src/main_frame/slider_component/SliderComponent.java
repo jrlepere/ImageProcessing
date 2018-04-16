@@ -1,4 +1,4 @@
-package main_frame;
+package main_frame.slider_component;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -27,7 +27,7 @@ public class SliderComponent extends JPanel {
 	 * @param maxValue the maximum value.
 	 * @param initialValue the initial value.
 	 */
-	public SliderComponent(Model m, String description, int minValue, int maxValue, int initialValue) {
+	public SliderComponent(Model m, String description, int minValue, int maxValue, int initialValue, ValueLabelConversion valueConverter) {
 		
 		// component parameters
 		this.setLayout(new BorderLayout());
@@ -49,7 +49,7 @@ public class SliderComponent extends JPanel {
 		slider.setPaintLabels(true);
 		
 		// current value label
-		JLabel sliderLabel = new JLabel(""+initialValue);
+		JLabel sliderLabel = new JLabel(""+valueConverter.convertForPresentation(initialValue));
 		sliderLabel.setHorizontalTextPosition(JLabel.CENTER);
 		sliderLabel.setHorizontalAlignment(JLabel.CENTER);
 		sliderLabel.setPreferredSize(new Dimension(COMPONENT_HEIGHT, COMPONENT_HEIGHT));
@@ -57,7 +57,7 @@ public class SliderComponent extends JPanel {
 		// update value label on change
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				sliderLabel.setText(""+slider.getValue());
+				sliderLabel.setText(""+valueConverter.convertForPresentation(slider.getValue()));
 			}
 		});
 		
@@ -123,11 +123,23 @@ public class SliderComponent extends JPanel {
 		slider.setLabelTable(tickLabels);
 	}
 	
+	/**
+	 * Sets the tick labels.
+	 * @param tickLabels the tick labels.
+	 */
+	public void setTicks(Hashtable<Integer, JLabel> tickLabels) {
+		// set major tick spacing
+		slider.setMajorTickSpacing(1);
+		
+		// set labels
+		slider.setLabelTable(tickLabels);
+	}
+	
 	private JSlider slider;
 	private int max;
 	private int min;
 	private static final long serialVersionUID = 11328442L;
-	public static final int DESCRIPTION_WIDTH = 100;
+	public static final int DESCRIPTION_WIDTH = 150;
 	public static final int COMPONENT_HEIGHT = 50;
 	
 }
