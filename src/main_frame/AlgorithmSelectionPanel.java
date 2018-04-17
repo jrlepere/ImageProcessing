@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import model.Model;
+import transformations.BitPlaneRemoval;
 import transformations.NegativeTransformation;
 import transformations.TransformationAlgorithm;
 import transformations.histogram_equalization.GlobalHistogramEqualization;
@@ -40,7 +41,8 @@ public class AlgorithmSelectionPanel extends JPanel {
 			new BiLinearInterpolationTransformation(m),
 			new NegativeTransformation(),
 			new GlobalHistogramEqualization(),
-			new LocalHistogramEqualization(m)
+			new LocalHistogramEqualization(m),
+			new BitPlaneRemoval(m)
 		};
 		
 		JComboBox<TransformationAlgorithm> algoSelectionBox = new JComboBox<>(algos);
