@@ -36,7 +36,7 @@ public class Smoothing implements TransformationAlgorithm {
 		parameterSelectionFrame.setLayout(new BorderLayout());
 		parameterSelectionFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		parameterSelectionFrame.setLocationRelativeTo(null);
-		parameterSelectionFrame.setResizable(false);
+		//parameterSelectionFrame.setResizable(false);
 		parameterSelectionFrame.setAlwaysOnTop(true);
 		
 		// smoothing matrix
