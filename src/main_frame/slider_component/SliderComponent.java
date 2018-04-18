@@ -139,7 +139,7 @@ public class SliderComponent extends JPanel {
 	private int max;
 	private int min;
 	private static final long serialVersionUID = 11328442L;
-	public static final int DESCRIPTION_WIDTH = 150;
+	public static final int DESCRIPTION_WIDTH = 125;
 	public static final int COMPONENT_HEIGHT = 50;
 	
 }

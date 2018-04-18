@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import model.Model;
 import transformations.BitPlaneRemoval;
 import transformations.NegativeTransformation;
+import transformations.Smoothing;
 import transformations.TransformationAlgorithm;
 import transformations.histogram_equalization.GlobalHistogramEqualization;
 import transformations.histogram_equalization.LocalHistogramEqualization;
@@ -31,17 +32,18 @@ public class AlgorithmSelectionPanel extends JPanel {
 		
 		this.setLayout(new GridLayout(1, 1));
 		
-		TransformationAlgorithm initialAlgo = new NearestNeighborTransformation(m);
+		TransformationAlgorithm initialAlgo = new NegativeTransformation();
 		m.setAlgorithm(initialAlgo);
 		
 		TransformationAlgorithm[] algos = new TransformationAlgorithm[] {
 			initialAlgo,
+			new NearestNeighborTransformation(m),
 			new LinearInterpolationTransformation(m, true),
 			new LinearInterpolationTransformation(m, false),
 			new BiLinearInterpolationTransformation(m),
-			new NegativeTransformation(),
 			new GlobalHistogramEqualization(),
 			new LocalHistogramEqualization(m),
+			new Smoothing(m),
 			new BitPlaneRemoval(m)
 		};
 		
