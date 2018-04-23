@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import model.Model;
 import transformations.BitPlaneRemoval;
+import transformations.MedianFilter;
 import transformations.NegativeTransformation;
 import transformations.Smoothing;
 import transformations.TransformationAlgorithm;
@@ -44,6 +45,7 @@ public class AlgorithmSelectionPanel extends JPanel {
 			new GlobalHistogramEqualization(),
 			new LocalHistogramEqualization(m),
 			new Smoothing(m),
+			new MedianFilter(m),
 			new BitPlaneRemoval(m)
 		};
 		
