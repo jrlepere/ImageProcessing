@@ -14,9 +14,9 @@ import main_frame.slider_component.ValueLabelConversion;
 import model.Model;
 
 /**
- * Global histogram equalization algorithm for contrast enhancement.
+ * Median Filter
  * @author JLepere2
- * @date 04/10/2018
+ * @date 04/20/2018
  */
 public class MedianFilter implements TransformationAlgorithm {
 	
