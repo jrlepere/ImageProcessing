@@ -21,7 +21,7 @@ import model.Model;
 public class MedianFilter implements TransformationAlgorithm {
 	
 	/**
-	 * Creates an object for performing local histogram equalization
+	 * Creates an object for median filter
 	 * @param m the Model for MVC.
 	 */
 	public MedianFilter(Model m) {

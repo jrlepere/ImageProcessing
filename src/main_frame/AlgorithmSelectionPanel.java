@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import model.Model;
 import transformations.BitPlaneRemoval;
+import transformations.HighBoostFilter;
 import transformations.Laplacian;
 import transformations.MedianFilter;
 import transformations.NegativeTransformation;
@@ -48,6 +49,7 @@ public class AlgorithmSelectionPanel extends JPanel {
 			new Smoothing(m),
 			new MedianFilter(m),
 			new Laplacian(),
+			new HighBoostFilter(m),
 			new BitPlaneRemoval(m)
 		};
 		
