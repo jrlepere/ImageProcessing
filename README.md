@@ -15,6 +15,11 @@
   - Negative
   - Global Histogram Equalization
   - Local Histogram Equalization
+  - Smoothing Filter
+  - Median Filter
+  - Sharpening Laplacian Filter
+  - High Boost Filter
+  - Bit Plane Removal
 - ADDING AN IMAGE: There are two ways to add an image to the program. Regardless, the image will be converted to gray scale and transformed to 512 x 512.
   - Select "File > Load Image" from the menu bar.
   - Select the loaded image on the left of the frame.
