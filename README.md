@@ -20,6 +20,15 @@
   - Sharpening Laplacian Filter
   - High Boost Filter
   - Bit Plane Removal
+  - Arithmetic Mean Filter
+  - Geometric Mean Filter
+  - Harmonic Mean Filter
+  - Contraharmonic Mean Filter
+  - Maximum Filter
+  - Minimum Filter
+  - Midpoint Filter
+  - Alpha Trimming Mean Filter
+
 - ADDING AN IMAGE: There are two ways to add an image to the program. Regardless, the image will be converted to gray scale and transformed to 512 x 512.
   - Select "File > Load Image" from the menu bar.
   - Select the loaded image on the left of the frame.
