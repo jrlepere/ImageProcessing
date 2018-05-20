@@ -2,3 +2,5 @@
 .project
 .settings
 bin
+nohup.out
+.ipynb_checkpoints
