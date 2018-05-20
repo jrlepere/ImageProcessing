@@ -7,10 +7,18 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import model.Model;
+import transformations.AlphaTrimmedMeanFilter;
+import transformations.ArithmeticMeanFilter;
 import transformations.BitPlaneRemoval;
+import transformations.ContraHarmonicMeanFilter;
+import transformations.GeometricMeanFilter;
+import transformations.HarmonicMeanFilter;
 import transformations.HighBoostFilter;
 import transformations.Laplacian;
+import transformations.MaxFilter;
 import transformations.MedianFilter;
+import transformations.MidpointFilter;
+import transformations.MinFilter;
 import transformations.NegativeTransformation;
 import transformations.Smoothing;
 import transformations.TransformationAlgorithm;
@@ -50,7 +58,15 @@ public class AlgorithmSelectionPanel extends JPanel {
 			new MedianFilter(m),
 			new Laplacian(),
 			new HighBoostFilter(m),
-			new BitPlaneRemoval(m)
+			new BitPlaneRemoval(m),
+			new ArithmeticMeanFilter(m),
+			new GeometricMeanFilter(m),
+			new HarmonicMeanFilter(m),
+			new ContraHarmonicMeanFilter(m),
+			new MaxFilter(m),
+			new MinFilter(m),
+			new MidpointFilter(m),
+			new AlphaTrimmedMeanFilter(m)
 		};
 		
 		JComboBox<TransformationAlgorithm> algoSelectionBox = new JComboBox<>(algos);
