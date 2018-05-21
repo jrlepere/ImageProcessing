@@ -56,7 +56,7 @@ public class AlgorithmSelectionPanel extends JPanel {
 			new LocalHistogramEqualization(m),
 			new Smoothing(m),
 			new MedianFilter(m),
-			new Laplacian(),
+			new Laplacian(m),
 			new HighBoostFilter(m),
 			new BitPlaneRemoval(m),
 			new ArithmeticMeanFilter(m),
